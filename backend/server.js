@@ -13,8 +13,7 @@ dotenv.config()
 const app = express()
 
 app.use(express.json())
-const __dirname = path.resolve()
-app.use(express.static(path.join(__dirname, '../frontend/out')))
+
 
 
 app.use(cors())
@@ -24,9 +23,7 @@ app.use(cors())
 app.use('/api/lead', leadsRoutes)
 
 
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'out', 'index.html'))
-})
+
 
 
 
