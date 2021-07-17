@@ -1,12 +1,12 @@
 import express from 'express'
-// import connectDB from './config/db.js'
+import connectDB from './config/db.js'
 import dotenv from 'dotenv'
 import leadsRoutes from './routes/leadsRoutes.js'
 import cors from 'cors'
-
+//dones
 
 dotenv.config()
-// connectDB()
+connectDB()
 
 
 

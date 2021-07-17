@@ -1,9 +1,10 @@
 import asyncHandler from 'express-async-handler'
+import Lead from '../models/leadsModel.js'
 
 //Create new leads
 // POST /api/leads
 
-const addLeads = asyncHandler(async(req, res) => {
+const addLeads = asyncHandler(async (req, res) => {
     const { type, tab, app, name, email, phone, postal, Ctype } = req.body
 
     const lead = new Lead({
