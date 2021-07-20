@@ -3,14 +3,18 @@ import connectDB from './config/db.js'
 import dotenv from 'dotenv'
 import leadsRoutes from './routes/leadsRoutes.js'
 import cors from 'cors'
-//dones
+import path from 'path'
+
+
 
 dotenv.config()
 connectDB()
+console.log(process.env.PORT)
 
 
 
 const app = express()
+
 
 app.use(express.json())
 
@@ -31,5 +35,5 @@ const PORT = process.env.PORT || 5000
 
 app.listen(
     PORT,
-    console.log(`Serveer running ${process.env.NOVE_ENV} mode port ${PORT}`)
+    console.log(`Serveer running ${process.env.NODE_ENV} mode port ${PORT}`)
 )
