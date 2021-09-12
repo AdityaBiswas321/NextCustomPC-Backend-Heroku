@@ -2,7 +2,7 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.SECRET_KEY);
 
-const paymentIntents = (req, res) => {
+const paymentIntents = async (req, res) => {
   if (req.method === "POST") {
     try {
       const { amount } = req.body;
