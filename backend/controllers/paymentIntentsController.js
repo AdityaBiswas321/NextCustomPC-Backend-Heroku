@@ -11,7 +11,7 @@ const paymentIntents = async (req, res) => {
       console.log(amount);
       const paymentIntent = await stripe.paymentIntents.create({
         amount,
-        currency: "cad",
+        currency: "usd",
       });
       console.log(paymentIntent);
       res.status(200).send(paymentIntent.client_secret);
