@@ -3,6 +3,7 @@ import connectDB from "./config/db.js";
 import dotenv from "dotenv";
 import leadsRoutes from "./routes/leadsRoutes.js";
 import paymentIntentsRoutes from "./routes/paymentIntentsRoutes.js";
+import shippingRoutes from "./routes/shippingRoutes.js";
 import cors from "cors";
 import path from "path";
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/lead", leadsRoutes);
+app.use("/api/ship", shippingRoutes);
 app.use("/api/payment_intents", paymentIntentsRoutes);
 
 const PORT = process.env.PORT || 5000;
