@@ -2,6 +2,6 @@ import express from "express";
 const router = express.Router();
 import { shipping } from "../controllers/shippingController.js";
 
-router.route("/").get(shipping);
+router.route("/").post(shipping);
 
 export default router;

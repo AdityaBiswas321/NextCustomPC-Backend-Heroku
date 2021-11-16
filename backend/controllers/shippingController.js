@@ -9,6 +9,16 @@ const shippo = require("shippo")(
 
 const shipping = async (req, res) => {
   try {
+    const {
+      user_name,
+      user_address,
+      user_city,
+      user_province,
+      user_postal,
+      user_country,
+      user_email,
+    } = req.body;
+
     const addressFrom = {
       name: "Ms Hippo",
       company: "Shippo",
@@ -21,16 +31,18 @@ const shipping = async (req, res) => {
       email: "support@goshippo.com",
     };
     const addressTo = {
-      name: "Ms Hippo",
-      company: "Shippo",
-      street1: "6242 Inverness St.",
-      city: "Vancouver",
-      state: "BC",
-      zip: "V5W3P9",
+      name: user_name,
+      company: "Test",
+      street1: user_address,
+      city: user_city,
+      state: user_province,
+      zip: user_postal,
       country: "CA", //iso2 country code
-      phone: "+1 555 341 9393",
-      email: "support@goshippo.com",
+      phone: "test",
+      email: user_email,
     };
+    console.log("ADDRESS TO");
+    console.log(addressTo);
     const parcelOne = {
       length: "5",
       width: "5",
@@ -56,7 +68,7 @@ const shipping = async (req, res) => {
     res.status(200).send(shipments);
   } catch (error) {
     res.status(500).json({ statusCode: 500, message: error.message });
-    console.log("it broke btich");
+    console.log("it broke");
   }
 };
 
