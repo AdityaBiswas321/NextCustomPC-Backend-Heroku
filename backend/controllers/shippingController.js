@@ -19,7 +19,7 @@ const shipping = async (req, res) => {
       user_email,
     } = req.body;
 
-    const addressFrom = {
+    const addressFrom = await shippo.address.create({
       name: "Ms Hippo",
       company: "Shippo",
       street1: "215 Clayton St.",
@@ -29,18 +29,32 @@ const shipping = async (req, res) => {
       country: "US", //iso2 country code
       phone: "+1 555 341 9393",
       email: "support@goshippo.com",
-    };
-    const addressTo = {
+      validate: true,
+    });
+
+    const addressTo = await shippo.address.create({
       name: user_name,
       company: "Test",
       street1: user_address,
       city: user_city,
       state: user_province,
       zip: user_postal,
-      country: "CA", //iso2 country code
+      country: user_country, //iso2 country code
       phone: "test",
       email: user_email,
-    };
+      validate: true,
+    });
+    // const addressTo = {
+    //   name: user_name,
+    //   company: "Test",
+    //   street1: user_address,
+    //   city: user_city,
+    //   state: user_province,
+    //   zip: user_postal,
+    //   country: "CA", //iso2 country code
+    //   phone: "test",
+    //   email: user_email,
+    // };
     console.log("ADDRESS TO");
     console.log(addressTo);
     const parcelOne = {
@@ -72,4 +86,22 @@ const shipping = async (req, res) => {
   }
 };
 
-export { shipping };
+const validate = async (req, res) => {
+  try {
+    const { validate } = req.body;
+    console.log("validation data");
+    console.log(validate);
+
+    const validated = await shippo.address.validate(validate);
+
+    console.log("validated");
+    console.log(validated);
+
+    res.status(200).send(validated);
+  } catch (error) {
+    res.status(500).json({ statusCode: 500, message: error.message });
+    console.log("it broke");
+  }
+};
+
+export { shipping, validate };
