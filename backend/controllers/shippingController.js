@@ -88,6 +88,8 @@ const shipping = async (req, res) => {
 
 const validate = async (req, res) => {
   try {
+    console.log("Request Data");
+    console.log(req.body);
     const { validate } = req.body;
     console.log("validation data");
     console.log(validate);
