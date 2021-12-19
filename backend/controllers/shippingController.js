@@ -29,7 +29,7 @@ const shipping = async (req, res) => {
       country: "US", //iso2 country code
       phone: "+1 555 341 9393",
       email: "support@goshippo.com",
-      validate: true,
+      validate: "true",
     });
 
     const addressTo = await shippo.address.create({
@@ -40,7 +40,7 @@ const shipping = async (req, res) => {
       state: user_province,
       zip: user_postal,
       country: user_country, //iso2 country code
-      phone: "test",
+      phone: "6048163994",
       email: user_email,
       validate: true,
     });
@@ -94,7 +94,13 @@ const validate = async (req, res) => {
     console.log("validation data");
     console.log(validate);
 
-    const validated = await shippo.address.validate(validate);
+    const validated = await shippo.address.validate(
+      validate,
+      function (err, address) {
+        console.log(address);
+        console.log(err);
+      }
+    );
 
     console.log("validated");
     console.log(validated);
